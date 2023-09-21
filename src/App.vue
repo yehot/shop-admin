@@ -1,5 +1,6 @@
 <template>
-    <button class="btn">按钮</button>
+    <!-- 作用？？ -->
+    <router-view></router-view>
 </template>
 
 <script>
@@ -10,7 +11,5 @@ export default {
 </script>
 
 <style>
-.btn {
-    @apply bg-purple-500 text-light-100 px-4 py-2 hover:(bg-purple-300);
-}
+
 </style>
