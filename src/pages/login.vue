@@ -39,6 +39,8 @@
 // setup: 组合时 api
 import { reactive } from 'vue'
 import { login } from '~/api/manager.js'
+import { ElNotification } from "element-plus";
+import router from "~/router/index.js";
 // import { User } from '@element-plus/icons-vue'
 // do not use same name with ref
 const form = reactive({
@@ -60,10 +62,23 @@ const onSubmit = () => {
     console.log('submit!')
     login(form.username, form.password)
         .then(res=> {
-            console.log(res.response.data)
+            console.log(res.data)
+            // 提示成功
+            ElNotification({
+                message: "登录成功",
+                type: 'success',
+                duration:3000
+            })
+
+            router.push("/")
         })
         .catch(err => {
             console.log(err.response.data)
+            ElNotification({
+                message: err.response.data.msg || "请求失败",
+                type: 'error',
+                duration:3000
+            })
         })
 }
 </script>
