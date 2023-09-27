@@ -7,12 +7,17 @@
 import Index from "~/pages/index.vue"
 import About from "~/pages/about.vue"
 import NotFound from "~/pages/404.vue"
+import Login from "~/pages/login.vue"
 
 // 2. 定义一些路由
 const routes = [
-  { 
-    path: '/', 
-    component: Index 
+  {
+    path: '/',
+    component: Index
+  },
+  {
+    path: '/login',
+    component: Login
   },
   {
     path: '/about',
