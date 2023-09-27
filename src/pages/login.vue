@@ -1,18 +1,3 @@
-<script setup>
-// setup: 组合时 api
-import { reactive } from 'vue'
-// import { User } from '@element-plus/icons-vue'
-// do not use same name with ref
-const form = reactive({
-  username:"",
-  password:""
-})
-
-const onSubmit = () => {
-  console.log('submit!')
-}
-</script>
-
 <template>
     <el-row class="login-container">
         <el-col :lg="16" class="flex items-center justify-center flex-col">
@@ -26,16 +11,16 @@ const onSubmit = () => {
                 <span>账号密码登录</span>
                 <span class="h-[1px] w-16 bg-gray-200"></span>
             </div>
-            <el-form :model="form" class=" w-[250px]">
-                <el-form-item>
+            <el-form :model="form" :rules="rules" class=" w-[250px]">
+                <el-form-item prop="username">
                     <el-input v-model="form.username" placeholder="请输入用户名" size="default" >
                         <template #prefix>
                             <el-icon><User /></el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item label="" size="default">
-                    <el-input v-model="form.password" placeholder="请输入密码" size="default" >
+                <el-form-item prop="password">
+                    <el-input v-model="form.password" type="password" show-password placeholder="请输入密码" size="default" >
                         <template #prefix>
                             <el-icon><Lock /></el-icon>
                         </template>
@@ -49,6 +34,31 @@ const onSubmit = () => {
         </el-col>
     </el-row>
 </template>
+
+<script setup>
+// setup: 组合时 api
+import { reactive } from 'vue'
+// import { User } from '@element-plus/icons-vue'
+// do not use same name with ref
+const form = reactive({
+  username:"",
+  password:""
+})
+
+const rules = reactive({
+    username:[{
+        require: true,
+        message: "不能为空",
+        min: 3,
+        max: 5,
+    }],
+    password:[],
+})
+
+const onSubmit = () => {
+  console.log('submit!')
+}
+</script>
 
 <style>
 .login-container {
