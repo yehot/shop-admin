@@ -29,7 +29,7 @@
                 <el-form-item label="" size="default">
                     <el-button type="primary" class="w-[250px] round" @click="onSubmit">登录</el-button>
                 </el-form-item>
-                
+
             </el-form>
         </el-col>
     </el-row>
@@ -38,6 +38,7 @@
 <script setup>
 // setup: 组合时 api
 import { reactive } from 'vue'
+import { login } from '~/api/manager.js'
 // import { User } from '@element-plus/icons-vue'
 // do not use same name with ref
 const form = reactive({
@@ -56,7 +57,14 @@ const rules = reactive({
 })
 
 const onSubmit = () => {
-  console.log('submit!')
+    console.log('submit!')
+    login(form.username, form.password)
+        .then(res=> {
+            console.log(res.response.data)
+        })
+        .catch(err => {
+            console.log(err.response.data)
+        })
 }
 </script>
 

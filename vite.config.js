@@ -11,6 +11,17 @@ export default defineConfig({
       "~": path.resolve(__dirname, "src")
     }
   },
+  server:{
+    proxy:{
+      // 配置发起请求时的域名代理
+      '/api': {
+        target: 'http://ceshi13.dishait.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
+  },
+
   plugins: [
     vue(),
     WindiCSS(),
