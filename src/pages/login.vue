@@ -69,24 +69,14 @@ const store = useStore()
 const onSubmit = () => {
     console.log('submit!')
     loading.value = true
-    login(form.username, form.password)
-        .then(res=> {
-            console.log(res)
-            // 提示成功
-            showToast("登录成功")
-            setToken(res.token)
 
-            getInfo().then(res2=>{
-                store.commit('SET_USERINFO', res2)
-                console.log(res2);
-            });
-
-            // router.push("/")
-        })
-        .catch(err => {
-            console.log(err.response.data)
-        }).finally(() =>{
-            loading.value = false
+    store.dispatch("login",form).then(res=>{
+        showToast("登录成功")
+        router.push("/")
+    }).catch(err => {
+        console.log(err.response.data)
+    }).finally(() =>{
+        loading.value = false
     })
 }
 </script>
