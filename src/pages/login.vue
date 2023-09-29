@@ -44,6 +44,7 @@ import router from "~/router/index.js";
 import {Lock, User} from '@element-plus/icons-vue'
 import {setToken} from "~/composables/auth.js";
 import {showToast} from "~/composables/util.js";
+import {useStore} from "vuex";
 
 // do not use same name with ref
 const form = reactive({
@@ -63,6 +64,8 @@ const rules = reactive({
 
 const loading = ref(false)
 
+const store = useStore()
+
 const onSubmit = () => {
     console.log('submit!')
     loading.value = true
@@ -74,6 +77,7 @@ const onSubmit = () => {
             setToken(res.token)
 
             getInfo().then(res2=>{
+                store.commit('SET_USERINFO', res2)
                 console.log(res2);
             });
 
