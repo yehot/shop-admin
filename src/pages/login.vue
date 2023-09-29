@@ -27,7 +27,7 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="" size="default">
-                    <el-button type="primary" class="w-[250px] round" @click="onSubmit">登录</el-button>
+                    <el-button type="primary" class="w-[250px] round" @click="onSubmit" loading="loading">登录</el-button>
                 </el-form-item>
 
             </el-form>
@@ -37,11 +37,13 @@
 
 <script setup>
 // setup: 组合时 api
-import { reactive } from 'vue'
-import { login } from '~/api/manager.js'
+import {reactive, ref} from 'vue'
+import {getInfo, login} from '~/api/manager.js'
 import { ElNotification } from "element-plus";
 import router from "~/router/index.js";
-// import { User } from '@element-plus/icons-vue'
+import { useCookies } from '@vueuse/integrations/useCookies'
+import {Lock, User} from '@element-plus/icons-vue'
+
 // do not use same name with ref
 const form = reactive({
   username:"",
@@ -58,28 +60,34 @@ const rules = reactive({
     password:[],
 })
 
+const loading = ref(false)
+
 const onSubmit = () => {
     console.log('submit!')
+    loading.value = true
     login(form.username, form.password)
         .then(res=> {
-            console.log(res.data)
+            console.log(res)
             // 提示成功
             ElNotification({
                 message: "登录成功",
                 type: 'success',
                 duration:3000
             })
+            const cookie = useCookies()
+            cookie.set('admin-token', res.token)
 
-            router.push("/")
+            getInfo().then(res2=>{
+                console.log(res2);
+            });
+
+            // router.push("/")
         })
         .catch(err => {
             console.log(err.response.data)
-            ElNotification({
-                message: err.response.data.msg || "请求失败",
-                type: 'error',
-                duration:3000
-            })
-        })
+        }).finally(() =>{
+            loading.value = false
+    })
 }
 </script>
 
