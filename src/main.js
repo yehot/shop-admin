@@ -8,6 +8,7 @@ import router from './router'
 // 全局引入图标
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import store from "~/store/index.js";
+import 'nprogress/nprogress.css'
 
 const app = createApp(App)
 app.use(ElementPlus)

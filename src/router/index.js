@@ -13,11 +13,17 @@ import Login from "~/pages/login.vue"
 const routes = [
   {
     path: '/',
-    component: Index
+    component: Index,
+    meta:{
+      title:"首页"
+    }
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    meta:{
+      title:"登录页"
+    }
   },
   {
     path: '/about',

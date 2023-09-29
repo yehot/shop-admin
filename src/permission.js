@@ -1,12 +1,13 @@
 import router from "~/router"
-import { getToken } from "~/composables/auth"
-import { showToast } from "~/composables/util"
+import {getToken} from "~/composables/auth"
+import {hideFullLoading, showFullLoading, showToast} from "~/composables/util"
 import store from "~/store/index.js";
 
 // 全局前置守卫
 router.beforeEach(async (to,from,next)=>{
 
     const token = getToken()
+    showFullLoading()
 
     // 没有登录，强制跳转回登录页
     if(!token && to.path !== "/login"){
@@ -26,5 +27,11 @@ router.beforeEach(async (to,from,next)=>{
         await store.dispatch("getInfo")
     }
 
+    // 设置页面标题
+    document.title = (to.meta.title ? to.meta.title : "") + "-商城后台"
+
     next()
 })
+
+// 全局后置守卫
+router.afterEach((to, from) => hideFullLoading())
