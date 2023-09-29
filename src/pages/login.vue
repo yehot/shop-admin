@@ -37,7 +37,7 @@
 
 <script setup>
 // setup: 组合时 api
-import {reactive, ref} from 'vue'
+import {onBeforeUnmount, onMounted, reactive, ref} from 'vue'
 import {getInfo, login} from '~/api/manager.js'
 import { ElNotification } from "element-plus";
 import router from "~/router/index.js";
@@ -79,6 +79,21 @@ const onSubmit = () => {
         loading.value = false
     })
 }
+
+// 监听回车事件
+function onKeyUp(e){
+    if(e.key === "Enter") onSubmit()
+}
+
+// 添加键盘监听
+onMounted(()=>{
+    document.addEventListener("keyup",onKeyUp)
+})
+// 移除键盘监听
+onBeforeUnmount(()=>{
+    document.removeEventListener("keyup",onKeyUp)
+})
+
 </script>
 
 <style>
