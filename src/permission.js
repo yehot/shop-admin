@@ -1,4 +1,4 @@
-import router from "~/router"
+import {addRoutes, router} from "~/router"
 import {getToken} from "~/composables/auth"
 import {hideFullLoading, showFullLoading, showToast} from "~/composables/util"
 import store from "~/store/index.js";
@@ -25,14 +25,18 @@ router.beforeEach(async (to,from,next)=>{
 
     // 如果用户登录了，自动获取用户信息，并存储在vuex当中
     // 每个页面都请求的数据
+    // 如果用户登录了，自动获取用户信息，并存储在vuex当中
+    let hasNewRoutes = false
     if(token){
-        await store.dispatch("getInfo")
+        let { menus } = await store.dispatch("getInfo")
+        // 动态添加路由
+        hasNewRoutes = addRoutes(menus)
     }
 
     // 设置页面标题
     document.title = (to.meta.title ? to.meta.title : "") + "-商城后台"
 
-    next()
+    hasNewRoutes ? next(to.fullPath) : next()
 })
 
 // 全局后置守卫

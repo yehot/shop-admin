@@ -40,7 +40,7 @@
 import {onBeforeUnmount, onMounted, reactive, ref} from 'vue'
 import {getInfo, login} from '~/api/manager.js'
 import { ElNotification } from "element-plus";
-import router from "~/router/index.js";
+import {router} from "~/router/index.js";
 import {Lock, User} from '@element-plus/icons-vue'
 import {setToken} from "~/composables/auth.js";
 import {showToast} from "~/composables/util.js";

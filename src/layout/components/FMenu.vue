@@ -1,6 +1,8 @@
 <template>
     <div class="f-menu" :style="{ width:$store.state.asideWidth }">
-      <el-menu unique-opened :collapse="isCollapse" default-active="2" class="border-0" @select="handleSelect" :collapse-transition="false">          <template v-for="(item, index) in asideMenus" :key="index">
+      <el-menu unique-opened :collapse="isCollapse" default-active="2" class="border-0" @select="handleSelect"
+               :collapse-transition="false" :default-active="defaultActive">
+          <template v-for="(item, index) in asideMenus" :key="index">
               <el-sub-menu v-if="item.child && item.child.length > 0" :index="item.name">
                   <template #title>
                       <el-icon>
@@ -28,30 +30,19 @@
 </template>
 
 <script setup>
-import router from "~/router/index.js";
+import {router} from "~/router/index.js";
 import {useStore} from "vuex";
-import {computed} from "vue";
+import {computed, ref} from "vue";
+import {useRoute} from "vue-router";
+
+const route = useRoute()
 const store = useStore()
 
 const isCollapse = computed(()=> !(store.state.asideWidth === '250px'))
 
-const asideMenus = [{
-    "name": "后台面板",
-    "icon": "help",
-    "child": [{
-        "name": "主控台",
-        "icon": "home-filled",
-        "frontpath": "/",
-    }]
-}, {
-    "name": "商城管理",
-    "icon": "shopping-bag",
-    "child": [{
-        "name": "商品管理",
-        "icon": "shopping-cart-full",
-        "frontpath": "/goods/list",
-    }]
-}]
+const defaultActive = ref(route.path)
+
+const asideMenus = computed( ()=> store.state.menus)
 
 const handleSelect = (e)=>{
     router.push(e)

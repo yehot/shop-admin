@@ -47,7 +47,7 @@ import { useFullscreen } from "@vueuse/core";
 import {showModal, showToast} from "~/composables/util.js";
 import {logout} from "~/api/manager.js";
 import store from "~/store/index.js";
-import router from "~/router/index.js";
+import {router} from "~/router/index.js";
 import {reactive, ref} from "vue";
 import FormDrawer from "~/components/FormDrawer.vue";
 
