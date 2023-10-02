@@ -9,6 +9,8 @@ router.beforeEach(async (to,from,next)=>{
     const token = getToken()
     showFullLoading()
 
+    console.log("to.path=" + to.path)
+
     // 没有登录，强制跳转回登录页
     if(!token && to.path !== "/login"){
         showToast("请先登录","error")

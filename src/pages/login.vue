@@ -27,7 +27,7 @@
                     </el-input>
                 </el-form-item>
                 <el-form-item label="" size="default">
-                    <el-button type="primary" class="w-[250px] round" @click="onSubmit" loading="loading">登录</el-button>
+                    <el-button type="primary" class="w-[250px] round" @click="onSubmit">登录</el-button>
                 </el-form-item>
 
             </el-form>

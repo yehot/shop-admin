@@ -12,6 +12,7 @@ export default defineConfig({
     }
   },
   server:{
+    port: "8999",
     proxy:{
       // 配置发起请求时的域名代理
       '/api': {

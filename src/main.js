@@ -9,6 +9,7 @@ import router from './router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import store from "~/store/index.js";
 import 'nprogress/nprogress.css'
+import "./permission.js"
 
 const app = createApp(App)
 app.use(ElementPlus)

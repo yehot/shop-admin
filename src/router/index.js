@@ -8,15 +8,26 @@ import Index from "~/pages/index.vue"
 import About from "~/pages/about.vue"
 import NotFound from "~/pages/404.vue"
 import Login from "~/pages/login.vue"
+ import Admin from "~/layout/admin.vue";
 
 // 2. 定义一些路由
 const routes = [
   {
     path: '/',
-    component: Index,
-    meta:{
-      title:"首页"
-    }
+    component: Admin,
+    meta: {
+      title: "后台首页"
+    },
+    // 子路由并不是完整的页面，也只是一个 View
+    // children: [
+    //   {
+    //     path: '/',
+    //     component: Index,
+    //     meta:{
+    //       title:"首页"
+    //     }
+    //   },
+    // ]
   },
   {
     path: '/login',
