@@ -5,7 +5,10 @@
           后台系统
       </span>
 
-      <el-icon class="icon-btn"><fold/></el-icon>
+      <el-icon class="icon-btn" @click="$store.commit('handleAsideWidth')">
+          <fold v-if="$store.state.asideWidth === '250px'"/>
+          <expand v-else/>
+      </el-icon>
       <el-tooltip effect="dark" content="刷新" placement="bottom">
           <el-icon class="icon-btn" @click="handleRefresh"><refresh/></el-icon>
       </el-tooltip>
@@ -39,7 +42,7 @@
 
 <script setup>
 
-import {Aim, ArrowDown, ElemeFilled, Fold, FullScreen, Refresh} from "@element-plus/icons-vue";
+import {Aim, ArrowDown, ElemeFilled, Expand, Fold, FullScreen, Refresh} from "@element-plus/icons-vue";
 import { useFullscreen } from "@vueuse/core";
 import {showModal, showToast} from "~/composables/util.js";
 import {logout} from "~/api/manager.js";

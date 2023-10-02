@@ -7,8 +7,9 @@
 import Index from "~/pages/index.vue"
 import About from "~/pages/about.vue"
 import NotFound from "~/pages/404.vue"
-import Login from "~/pages/login.vue"
- import Admin from "~/layout/admin.vue";
+import Login from "~/pages/login.vue";
+import Admin from "~/layout/admin.vue";
+import GoodsList from "~/pages/goods/index.vue";
 
 // 2. 定义一些路由
 const routes = [
@@ -19,15 +20,22 @@ const routes = [
       title: "后台首页"
     },
     // 子路由并不是完整的页面，也只是一个 View
-    // children: [
-    //   {
-    //     path: '/',
-    //     component: Index,
-    //     meta:{
-    //       title:"首页"
-    //     }
-    //   },
-    // ]
+    children: [
+      {
+        path: '/',
+        component: Index,
+        meta:{
+          title:"首页"
+        }
+      },
+      {
+        path: '/goods/list',
+        component: GoodsList,
+        meta:{
+          title:"商品管理"
+        }
+      },
+    ]
   },
   {
     path: '/login',
