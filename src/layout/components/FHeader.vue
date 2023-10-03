@@ -33,7 +33,7 @@
           </el-dropdown>
       </div>
 
-      <form-drawer ref="formDrawerRef" title="修改密码" @submit="onsubmit">
+      <form-drawer ref="formDrawerRef" title="修改密码" @submit="onSubmit">
 
       </form-drawer>
   </div>
@@ -103,6 +103,7 @@ const handleRefresh = ()=> location.reload()
 .f-header {
     @apply flex items-center bg-indigo-700 text-lime-50 fixed top-0 right-0 left-0;
     height: 64px;
+    z-index: 1000;
 }
 
 .logo {
