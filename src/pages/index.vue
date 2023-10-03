@@ -29,7 +29,7 @@
 
         <el-row :gutter="20" class="mt-5">
             <el-col :span="12" :offset="0">
-                <IndexChart/>
+                <IndexChart v-permission="['getStatistics3,GET']"/>
             </el-col>
             <el-col :span="12" :offset="0">
                 <IndexCard title="店铺及商品提示" tip="店铺及商品提示" :btns="goods" class="mb-3"/>
