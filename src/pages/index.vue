@@ -1,31 +1,38 @@
 <template>
-  <el-row style="min-height:100vh;">
-      <el-col :span="16" class="bg-left">
-        <el-button type="primary" size="default" @click="add"> {{ count }}</el-button>
-        <el-button size="default" @click="addAge"> {{ form.age }}</el-button>
-      </el-col>
-      <el-col :span="8" class="bg-right">2</el-col>
-  </el-row>
+    <div>
+        <el-row :gutter="10">
+            <el-col :span="6" :offset="0" v-for="(item, index) in panels" :key="index">
+                <el-card shadow="hover" class="border-0">
+                    <template #header>
+                        <div class="flex justify-between">
+                            <span>{{ item.title }}</span>
+                            <el-tag :type="item.unitColor" effect="plain">{{ item.unit }}</el-tag>
+                        </div>
+                    </template>
+                    <span>
+                        {{ item.value }}
+                    </span>
+                    <el-divider/>
+                    <div class="flex justify-between">
+                        <span>{{ item.subTitle }}</span>
+                        <span>{{ item.subValue }}</span>
+                    </div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
 </template>
 
 <script setup>
-// ref 和 reactive 区别：基础数据类型和
-import { ref, reactive } from 'vue'
 
-let count = ref(1)
+import {getStatistics1} from "~/api/index.js";
+import {ref} from "vue";
 
-const form = reactive({
-  age: 2
+const panels = ref([])
+getStatistics1().then( res=> {
+    panels.value = res.panels;
 })
 
-function addAge() {
-  form.age++;
-}
-
-function add() {
-  count.value++
-  console.log(count.value)
-}
 </script>
 
 <style>
