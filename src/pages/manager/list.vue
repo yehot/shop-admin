@@ -1,10 +1,17 @@
+<template>
+  <el-button @click="showImagePicker">图片选择</el-button>
+  <ChooseImage/>
+</template>
+
 <script setup>
 
-</script>
+import ChooseImage from "~/components/ChooseImage.vue";
 
-<template>
-  管理员
-</template>
+const showImagePicker = () => {
+
+}
+
+</script>
 
 <style scoped>
 
