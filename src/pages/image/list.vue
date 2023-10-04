@@ -1,6 +1,8 @@
 <template>
   <el-container class="bg-white rounder" :style="{height: (h + 'px')}">
-      <el-header class="image-header">Header</el-header>
+      <el-header class="image-header">
+
+      </el-header>
       <el-container>
           <ImageAside/>
           <ImageMain/>
@@ -10,8 +12,8 @@
 
 <script setup>
 
-import ImageAside from "~/layout/components/ImageAside.vue";
-import ImageMain from "~/layout/components/ImageMain.vue";
+import ImageAside from "~/components/ImageAside.vue";
+import ImageMain from "~/components/ImageMain.vue";
 
 const windowHeight = window.innerHeight || document.body.clientHeight;
 const h = windowHeight - 64 - 44 - 40

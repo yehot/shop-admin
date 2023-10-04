@@ -44,10 +44,10 @@
 import {getStatistics1, getStatistics2} from "~/api/index.js";
 import {ref} from "vue";
 import CountTo from "~/components/CountTo.vue";
-import IndexHeaderSk from "~/layout/components/IndexHeaderSk.vue";
-import IndexNavs from "~/layout/components/IndexNavs.vue";
-import IndexChart from "~/layout/components/IndexChart.vue";
-import IndexCard from "~/layout/components/IndexCard.vue";
+import IndexHeaderSk from "~/components/IndexHeaderSk.vue";
+import IndexNavs from "~/components/IndexNavs.vue";
+import IndexChart from "~/components/IndexChart.vue";
+import IndexCard from "~/components/IndexCard.vue";
 
 const panels = ref([])
 getStatistics1().then( res=> {

@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import AsideList from "~/layout/components/AsideList.vue";
+import AsideList from "~/components/AsideList.vue";
 import {ref} from "vue";
 import {getImageClassList} from "~/api/image.js";
 
