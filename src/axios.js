@@ -3,7 +3,8 @@ import {getToken} from "~/composables/auth.js";
 import {showToast} from "~/composables/util.js";
 
 const service = axios.create({
-  baseURL: "/api"
+  // baseURL: "/api"
+  baseURL:import.meta.env.VITE_APP_BASE_API,
 })
 
 
